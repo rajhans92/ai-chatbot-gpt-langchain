@@ -8,6 +8,6 @@
       "rootDir": "./src",
       "resolveJsonModule": true
     },
-    "include": ["src"],
+    "include": ["src", "server"],
     "exclude": ["node_modules", "test", "dist"]
   }
