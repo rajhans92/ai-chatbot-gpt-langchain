@@ -1,5 +1,7 @@
 import "dotenv/config";
 import express,{Application} from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
 import ErrorHandler from "../middlewares/errorHandler";
 import Routers from '../routes/routes';
 import { log } from 'node:console';
@@ -13,7 +15,7 @@ class App{
     constructor(){
         this.app = express();
         this.host = process.env.host || "http://localhost";
-        this.port = parseInt(process.env.PORT || "3000");
+        this.port = parseInt(process.env.PORT || "4000");
         this.init();
     }
 
@@ -30,6 +32,8 @@ class App{
 
     private initMiddlewares(){
         console.log("Setup Middlewares....");
+        this.app.use(cors());
+        this.app.use(helmet());
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));    
     }

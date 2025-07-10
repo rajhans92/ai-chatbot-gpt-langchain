@@ -12,10 +12,10 @@ class ChatController{
     }
 
     public async llmChat(req: Request, res: Response, next: NextFunction){
-        try{            
-            let message: string = req.body.message || "No message";
-            let messageHistory: Array<{ role: string, content: string }> = req.body.messageHistory || [];
-            const responseObj = await this.aiChatHelperObj.callModel(message,messageHistory).then((data) => {return data});
+        try{
+            
+            let messagesHistory: Array<{ role: string, content: string }> = req.body.messagesHistory || [];
+            const responseObj = await this.aiChatHelperObj.callModel(messagesHistory).then((data) => {return data});
             
             res.status(200).json({system: responseObj});
         }catch(error: unknown){            

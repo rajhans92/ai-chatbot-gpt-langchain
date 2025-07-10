@@ -14,14 +14,13 @@ class AiChatHelper{
     }
     
 
-    public async callModel(message: string, messageHistory: Array<{role: string, content: string}>){
+    public async callModel(messagesHistory: Array<{role: string, content: string}>){
         let messageArr:Array<{role: string, content: string}> = [
             { role: "system", content: "Your are a good AI assistent!" }
         ];
         
-        messageArr.push(...messageHistory);
-        messageArr.push({ role: "user", content:message })
-        const result = await this.model.invoke(messageArr);
+        messageArr.push(...messagesHistory);
+        const result = await this.model.invoke(messagesHistory);
         
         return result.content;
     }
